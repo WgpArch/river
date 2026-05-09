@@ -1,0 +1,247 @@
+/* =============================================================================
+ * Waybar Configuration - Cyberpunk Theme
+ * Inspired by: Acitygirl.jpg wallpaper
+ * =========================================================================== */
+
+@import "color.css";
+
+/* -----------------------------------------------------------------------------
+ * Base styles
+ * -------------------------------------------------------------------------- */
+
+* {
+  border: none;
+  border-radius: 0;
+  font-family: "Z003", "JetBrainsMono Nerd Font", "Hack Nerd Font", monospace;
+  font-size: 14px;
+  padding: 0;
+  margin: 0;
+  min-height: 0;
+}
+
+window#waybar {
+  background-color: rgba(15, 23, 42, 0.85);  /* Transparent black-blue */
+  border-bottom: 2px solid rgba(34, 211, 238, 0.3);  /* Cyan glow */
+  color: @text;
+}
+
+/* -----------------------------------------------------------------------------
+ * Tags (Workspaces)
+ * -------------------------------------------------------------------------- */
+
+#tags {
+  background-color: rgba(30, 41, 59, 0.9);
+  border-radius: 8px;
+  margin: 4px 8px 4px 12px;
+  padding: 0 4px;
+}
+
+#tags button {
+  color: @subtext0;
+  background-color: transparent;
+  padding: 4px 8px;
+  margin: 2px 1px;
+  border-radius: 6px;
+  transition: all 0.2s ease;
+}
+
+#tags button:hover {
+  color: @cyan;
+  background-color: rgba(34, 211, 238, 0.1);
+}
+
+#tags button.occupied {
+  color: @pink;
+  background-color: rgba(244, 114, 182, 0.15);
+}
+
+#tags button.focused {
+  color: @base;
+  background-color: @cyan;
+  font-weight: bold;
+}
+
+#tags button.urgent {
+  color: @red;
+  animation: blink 0.5s ease infinite;
+}
+
+@keyframes blink {
+  0% { background-color: transparent; }
+  50% { background-color: rgba(248, 113, 113, 0.4); }
+  100% { background-color: transparent; }
+}
+
+/* -----------------------------------------------------------------------------
+ * Modules - Common styles
+ * -------------------------------------------------------------------------- */
+
+#clock,
+#custom-launcher,
+#custom-power,
+#custom-notification,
+#custom-player,
+#pulseaudio,
+#temperature,
+#battery,
+#memory,
+#disk,
+#tray,
+#custom-weather {
+  background-color: rgba(30, 41, 59, 0.7);
+  padding: 4px 10px;
+  margin: 4px 3px;
+  border-radius: 8px;
+  border: 1px solid rgba(34, 211, 238, 0.2);
+}
+
+/* -----------------------------------------------------------------------------
+ * Individual modules
+ * -------------------------------------------------------------------------- */
+
+#custom-launcher {
+  font-size: 18px;
+  color: @cyan;
+  background-color: rgba(34, 211, 238, 0.15);
+  margin-left: 12px;
+  padding: 4px 12px;
+}
+
+#custom-launcher:hover {
+  background-color: rgba(34, 211, 238, 0.25);
+}
+
+#clock {
+  color: @purple;
+  margin: 4px 12px;
+  font-weight: 200;
+}
+
+#custom-weather {
+  color: @orange;
+}
+
+#custom-notification {
+  color: @pink;
+  font-size: 16px;
+}
+
+#custom-player {
+  color: @magenta;
+  min-width: 50px;
+}
+
+#custom-power {
+  font-size: 16px;
+  color: @red;
+  background-color: rgba(248, 113, 113, 0.15);
+  margin-right: 12px;
+}
+
+#tray {
+  margin: 4px 8px;
+  padding: 4px 8px;
+}
+
+#tray > .passive {
+  -gtk-icon-effect: dim;
+}
+
+#tray > .needs-attention {
+  -gtk-icon-effect: highlight;
+}
+
+#pulseaudio {
+  color: @blue;
+}
+
+#pulseaudio.muted {
+  color: @subtext0;
+  opacity: 0.6;
+}
+
+#temperature {
+  color: @cyan;
+}
+
+#temperature.critical {
+  color: @red;
+  background-color: rgba(248, 113, 113, 0.2);
+}
+
+#battery {
+  color: @green;
+}
+
+#battery.charging {
+  color: @yellow;
+}
+
+#battery.warning {
+  color: @orange;
+}
+
+#battery.critical {
+  color: @red;
+  animation: blink 1s ease infinite;
+}
+
+#memory {
+  color: @purple;
+}
+
+#disk {
+  color: @pink;
+}
+
+/* -----------------------------------------------------------------------------
+ * Tooltips
+ * -------------------------------------------------------------------------- */
+
+tooltip {
+  background-color: rgba(15, 23, 42, 0.95);
+  border: 1px solid rgba(34, 211, 238, 0.3);
+  border-radius: 8px;
+  padding: 8px;
+}
+
+tooltip label {
+  color: @text;
+}
+
+/* -----------------------------------------------------------------------------
+ * Calendar popup (from clock)
+ * -------------------------------------------------------------------------- */
+
+#calendar-box {
+  background-color: rgba(15, 23, 42, 0.98);
+  border: 2px solid rgba(34, 211, 238, 0.3);
+  border-radius: 12px;
+  padding: 10px;
+}
+
+calendar:selected {
+  background-color: @cyan;
+  color: @base;
+  border-radius: 6px;
+}
+
+calendar.header {
+  color: @purple;
+  font-weight: bold;
+}
+
+calendar.button {
+  color: @pink;
+}
+
+/* -----------------------------------------------------------------------------
+ * Weather tooltip
+ * -------------------------------------------------------------------------- */
+
+#custom-weather.tooltip {
+  background-color: rgba(30, 41, 59, 0.95);
+  color: @text;
+  border-radius: 8px;
+  padding: 8px;
+}

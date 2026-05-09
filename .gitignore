@@ -1,0 +1,9 @@
+# Personal config files - DO NOT COMMIT
+/etc/get_weather
+
+# Runtime/cache files that shouldn't be versioned
+*.log
+*.cache
+__pycache__/
+.Python
+*.pyc

@@ -1,0 +1,193 @@
+#!/bin/sh
+# =============================================================================
+# RiverWM Init Configuration
+# =============================================================================
+
+# -----------------------------------------------------------------------------
+# 1. Environment & Session Setup
+# -----------------------------------------------------------------------------
+riverctl spawn "dbus-update-activation-environment --systemd DBUS_SESSION_BUS_ADDRESS SEATD_SOCK DISPLAY WAYLAND_DISPLAY XAUTHORITY XDG_CURRENT_DESKTOP=river"
+riverctl spawn "systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP DISPLAY"
+
+# -----------------------------------------------------------------------------
+# 2. Appearance: Colors, Borders, Background
+# -----------------------------------------------------------------------------
+# Background wallpaper (replace path with your actual wallpaper)
+riverctl spawn "swaybg -i ~/Pictures/ALNW/Acitygirl.jpg -m fill"
+
+
+# Border & background colors 
+riverctl background-color 0x1E1D2F
+riverctl border-color-focused 0xFAE3B0
+riverctl border-color-unfocused 0xABE9B3
+
+# -----------------------------------------------------------------------------
+# 3. Input Devices
+# -----------------------------------------------------------------------------
+# Touchpad settings (adjust device name if needed)
+riverctl input pointer-2-7-SynPS/2_Synaptics_TouchPad tap enabled
+riverctl input pointer-2-7-SynPS/2_Synaptics_TouchPad drag enabled
+riverctl input pointer-2-7-SynPS/2_Synaptics_TouchPad disable-while-typing enabled
+riverctl input pointer-2-7-SynPS/2_Synaptics_TouchPad middle-emulation enabled
+riverctl input pointer-2-7-SynPS/2_Synaptics_TouchPad natural-scroll enabled
+riverctl input pointer-2-7-SynPS/2_Synaptics_TouchPad tap-button-map left-right-middle
+riverctl input pointer-2-7-SynPS/2_Synaptics_TouchPad scroll-method two-finger
+
+# Keyboard repeat rate
+riverctl set-repeat 50 300
+
+# Hide cursor when typing
+riverctl hide-cursor when-typing enabled
+
+# -----------------------------------------------------------------------------
+# 4. Layout Generator: filtile
+# -----------------------------------------------------------------------------
+riverctl default-layout filtile
+riverctl spawn  filtile
+
+# Optional: Set initial layout parameters
+riverctl send-layout-cmd filtile "main-ratio 0.5"
+riverctl send-layout-cmd filtile "outer-gaps 5"
+riverctl send-layout-cmd filtile "inner-gaps 4"
+
+# -----------------------------------------------------------------------------
+# 5. Spawn Services (Waybar, Notifications, Network, etc.)
+# -----------------------------------------------------------------------------
+# Authentication agent
+riverctl spawn "/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1"
+
+# Status bar
+riverctl spawn "waybar -c ~/.config/waybar/river/config -s ~/.config/waybar/river/style.css"
+
+# Notification daemon
+riverctl spawn "swaync"
+
+# Network manager applet
+riverctl spawn "nm-applet --indicator"
+
+# Idle lock (screen timeout)
+riverctl spawn "swayidle -w timeout 600 ~/.config/river/scripts/wayland_session_lock"
+
+# Clipboard history (if you use cliphist)
+riverctl spawn "wl-paste --type text --watch cliphist store"
+riverctl spawn "wl-paste --type images --watch cliphist store"
+
+# --- OPTIONAL: Music Player Daemon (commented out) ---
+# riverctl spawn "mpd"
+# riverctl spawn "mpDris"
+
+# -----------------------------------------------------------------------------
+# 6. GTK Theme & Settings (for apps that respect GTK)
+# -----------------------------------------------------------------------------
+gnome_schema="org.gnome.desktop.interface"
+gsettings set "$gnome_schema" gtk-theme "Flat-Remix-GTK-Blue-Darkest-Solid" 2>/dev/null || true
+gsettings set "$gnome_schema" icon-theme "Tela-circle-manjaro-dark" 2>/dev/null || true
+gsettings set "$gnome_schema" cursor-theme "Layan-cursors" 2>/dev/null || true
+
+# -----------------------------------------------------------------------------
+# 7. Window Rules: Float & CSD Filters
+# -----------------------------------------------------------------------------
+# Float these app IDs
+for app in float pavucontrol Timeshift-gtk nm-connection-editor nwg-look valent \
+           file-roller GParted ristretto; do
+    riverctl float-filter-add app-id "$app"
+done
+
+# Float these window titles
+for title in "popup title with spaces" "Open File" "File Operation Progress" \
+             "Preferences" dialog "Picture-in-Picture" bubble task_dialog menu \
+             "Confirm to replace files"; do
+    riverctl float-filter-add title "$title"
+done
+
+# Client-side decorations for specific apps
+riverctl csd-filter-add app-id "gedit"
+
+# -----------------------------------------------------------------------------
+# 8. Keybindings
+# -----------------------------------------------------------------------------
+# --- Basic ---
+riverctl map normal Super Q close                    # Close focused view
+riverctl map normal Super R spawn "$HOME/.config/river/init"  # Reload config
+riverctl map normal Super+Shift E exit               # Exit River
+riverctl map normal Super Space toggle-float         # Toggle float
+riverctl map normal Super F toggle-fullscreen        # Toggle fullscreen
+
+# --- Launcher & Power ---
+riverctl map normal Super D spawn 'rofi -show drun -theme ~/.config/rofi/sleek-dark.rasi'
+riverctl map normal Super E spawn "$HOME/.config/river/scripts/rofi_powermenu"
+
+# --- Screenshots & Utilities ---
+riverctl map normal None Print spawn /home/wgparch/.config/river/scripts/take-screenshot
+riverctl map normal Super C spawn "$HOME/.config/river/scripts/color"
+riverctl map normal Super X spawn "$HOME/.config/river/scripts/rofi_music"
+riverctl map normal Super Print spawn "$HOME/.config/river/scripts/rofi_screenrecord"
+
+# --- Focus & Layout Navigation ---
+riverctl map normal Super J focus-view next
+riverctl map normal Super K focus-view previous
+riverctl map normal Super+Shift J swap next
+riverctl map normal Super+Shift K swap previous
+riverctl map normal Super Period focus-output next
+riverctl map normal Super Comma focus-output previous
+riverctl map normal Super+Shift Period send-to-output next
+riverctl map normal Super+Shift Comma send-to-output previous
+riverctl map normal Super+Shift Return zoom          # Bump to top of stack
+
+# --- Mouse Bindings ---
+riverctl map-pointer normal Super BTN_LEFT move-view
+riverctl map-pointer normal Super BTN_RIGHT resize-view
+riverctl map-pointer normal Super BTN_MIDDLE toggle-float
+
+# --- Tag Management (1-9, 0 for all) ---
+for i in $(seq 1 9); do
+    tags=$((1 << ($i - 1)))
+    riverctl map normal Super $i set-focused-tags $tags
+    riverctl map normal Super+Shift $i set-view-tags $tags
+    riverctl map normal Super+Control $i toggle-focused-tags $tags
+    riverctl map normal Super+Shift+Control $i toggle-view-tags $tags
+done
+
+# Tag 0 = all tags
+all_tags=$(((1 << 32) - 1))
+riverctl map normal Super 0 set-focused-tags $all_tags
+riverctl map normal Super+Shift 0 set-view-tags $all_tags
+
+# --- Scratchpad (Tag 21) ---
+scratch_tag=$((1 << 20))
+riverctl map normal Super P toggle-focused-tags ${scratch_tag}
+riverctl map normal Super+Shift P set-view-tags ${scratch_tag}
+all_but_scratch_tag=$(( ((1 << 32) - 1) ^ $scratch_tag ))
+riverctl spawn-tagmask ${all_but_scratch_tag}
+
+# --- Layout Controls (rivercarro) ---
+riverctl map normal Super H send-layout-cmd rivercarro "main-ratio -0.05"
+riverctl map normal Super L send-layout-cmd rivercarro "main-ratio +0.05"
+riverctl map normal Super+Shift H send-layout-cmd rivercarro "main-count +1"
+riverctl map normal Super+Shift L send-layout-cmd rivercarro "main-count -1"
+riverctl map normal Super Up    send-layout-cmd rivercarro "main-location top"
+riverctl map normal Super Right send-layout-cmd rivercarro "main-location right"
+riverctl map normal Super Down  send-layout-cmd rivercarro "main-location bottom"
+riverctl map normal Super Left  send-layout-cmd rivercarro "main-location left"
+riverctl map normal Super M     send-layout-cmd rivercarro "main-location monocle"
+riverctl map normal Super+Shift A send-layout-cmd rivercarro "main-ratio 0.5"
+
+# --- Passthrough Mode (for nested compositors) ---
+riverctl declare-mode passthrough
+riverctl map normal Super F11 enter-mode passthrough
+riverctl map passthrough Super F11 enter-mode normal
+
+# --- Audio Keys (Normal + Locked Modes) ---
+for mode in normal locked; do
+    riverctl map $mode None XF86AudioRaiseVolume  spawn "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+"
+    riverctl map $mode None XF86AudioLowerVolume  spawn "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"
+    riverctl map $mode None XF86AudioMute         spawn "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
+done
+
+# -----------------------------------------------------------------------------
+# 9. Final Notes
+# -----------------------------------------------------------------------------
+# - This file is self-contained; autostart.sh is no longer needed
+# - To reload: Press Super+R (or logout/login)
+# - To validate syntax: sh -n ~/.config/river/init
+# - Colors will be updated after wallpaper extraction

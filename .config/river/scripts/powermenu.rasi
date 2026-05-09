@@ -1,0 +1,55 @@
+* {
+    font: "Z003 12";
+    background-color: transparent;
+    text-color: #DC3FD3;
+}
+
+window {
+    padding: 1em;
+    border: 2px;
+    border-color: #22d3ee;
+    border-radius: 10px;
+    background-color: rgba(10, 10, 10, 0.95);
+}
+
+mainbox {
+    spacing: 0px;
+    children: [listview];
+}
+
+listview {
+    padding: 8px;
+    margin: 16px 0 0 0;
+    border-radius: 6px;
+    expand: false;
+    background-color: rgba(40, 42, 46, 0.9);
+    columns: 1;
+    lines: 5;
+    dynamic: false;
+    cycle: true;
+    fixed-columns: false;
+    fixed-height: true;
+    flow: vertical;
+}
+
+element {
+    border: 0;
+    padding: 12px 16px;
+    background: transparent;
+    children: [element-text];
+}
+
+element selected {
+    border-radius: 6px;
+    background-color: #D91B49;
+}
+
+element selected element-text {
+    text-color: #0f172a;
+    font-weight: bold;
+}
+
+element-text {
+    font: inherit;
+    horizontal-align: 0.0;
+}

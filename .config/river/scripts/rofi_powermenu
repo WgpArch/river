@@ -1,0 +1,24 @@
+#!/bin/bash
+# Cyberpunk Power Menu
+
+THEME="$HOME/.config/river/scripts/powermenu.rasi"
+
+options=(
+  "󰐥 Shutdown"
+  "󰜉 Reboot" 
+  " Logout"
+  "󰌾 Lock"
+  "󰒲 Suspend"
+)
+
+choice=$(printf '%s\n' "${options[@]}" | rofi -dmenu -p " Power" -theme "$THEME")
+
+[[ -z "$choice" ]] && exit 0
+
+case "$choice" in
+  *Shutdown*) systemctl poweroff ;;
+  *Reboot*)   systemctl reboot ;;
+  *Logout*)   riverctl exit ;;
+  *Lock*)     swaylock -f 2>/dev/null || loginctl lock-session ;;
+  *Suspend*)  systemctl suspend ;;
+esac

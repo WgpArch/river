@@ -1,0 +1,33 @@
+/*
+ * Cyberpunk Cityscape Palette
+ * Extracted from: Acitygirl.jpg
+ */
+
+/* Dark backgrounds */
+@define-color base        #0f172a;
+@define-color mantle      #1e293b;
+@define-color crust       #020617;
+
+/* Text colors */
+@define-color text        #e2e8f0;
+@define-color subtext0    #94a3b8;
+@define-color subtext1    #cbd5e1;
+
+/* Surface layers */
+@define-color surface0    #334155;
+@define-color surface1    #475569;
+@define-color surface2    #64748b;
+
+/* Accent colors from wallpaper */
+@define-color cyan        #22d3ee;    /* Teal street lights */
+@define-color pink        #f472b6;    /* Pink building glow */
+@define-color purple      #a78bfa;    /* Purple sky */
+@define-color orange      #fb923c;    /* Orange windows */
+@define-color blue        #60a5fa;    /* Blue ambient */
+@define-color magenta     #e879f9;    /* Magenta highlights */
+
+/* Functional colors */
+@define-color green       #4ade80;
+@define-color yellow      #facc15;
+@define-color red         #f87171;
+@define-color rose        #fda4af;

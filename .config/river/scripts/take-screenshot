@@ -1,0 +1,5 @@
+#!/bin/sh
+DIR="/home/wgparch/Pictures/Screenshots/river"
+mkdir -p "$DIR"
+FILE="$DIR/screenshot-$(date +%Y%m%d-%H%M%S).png"
+grim "$FILE" && notify-send "Screenshot" "Saved!"

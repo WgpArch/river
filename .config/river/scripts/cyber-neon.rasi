@@ -1,0 +1,82 @@
+* {
+    font: "Z003 12";
+    background-color: transparent;
+    text-color: #e2e8f0;
+}
+
+window {
+    padding: 1em;
+    border: 2px;
+    border-color: #22d3ee;
+    border-radius: 10px;
+    background-color: rgba(10, 10, 10, 0.95);
+}
+
+mainbox {
+    spacing: 0px;
+    children: [inputbar, listview];
+}
+
+inputbar {
+    margin: 0px 0px 0.5em 0em;
+    spacing: 0.4em;
+    children: [entry];
+}
+
+listview, inputbar {
+    padding: 0.5em;
+    border-radius: 6px;
+    expand: false;
+    background-color: rgba(40, 42, 46, 0.9);
+}
+
+listview {
+    padding: 8px;
+    margin: 16px 0 0 0;
+    border-radius: 5px;
+    columns: 4;
+    lines: 4;
+    dynamic: true;
+    cycle: true;
+    fixed-columns: true;
+    fixed-height: true;
+    flow: horizontal;
+}
+
+element {
+    border: 0;
+    padding: 10px;
+    orientation: vertical;
+    background: transparent;
+    children: [element-icon, element-text];
+}
+
+element-icon {
+    size: 2em;
+    text-color: #f472b6;
+}
+
+element-text {
+    font: inherit;
+    horizontal-align: 0.5;
+}
+
+element selected {
+    border-radius: 6px;
+    background-color: #22d3ee;
+}
+
+element selected element-text {
+    text-color: #0f172a;
+    font-weight: bold;
+}
+
+element selected element-icon {
+    text-color: #0f172a;
+}
+
+entry {
+    placeholder: "Search...";
+    placeholder-color: #585E65;
+    font: "Z003 11";
+}
