@@ -1,0 +1,10 @@
+[Unit]
+Description=Get the current weather every 05 minutes
+
+[Timer]
+OnCalendar=*:00/05:00
+Persistent=true
+Unit=get_weather.service
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,37 @@
+#!/bin/bash
+
+CONF_FILE=/etc/get_weather
+if [ -e "$CONF_FILE" ]; then
+    . "$CONF_FILE"
+else
+    echo "Config $CONF_FILE not found"
+    exit 1
+fi
+
+if [ -z "$LAT" -o -z "$LONG" -o -z "$APPID" ]; then
+    echo "Missing LAT, LONG, or APPID"
+    exit 1
+fi
+
+CURRENT=/run/weather.json
+FORECAST=/run/forecast.json
+
+# Ensure /run is writable
+mkdir -p /run
+
+# Download current weather
+if wget -q "https://api.openweathermap.org/data/2.5/weather?lat=${LAT}&lon=${LONG}&units=metric&appid=${APPID}" -O "${CURRENT}"; then
+    echo "Current weather downloaded"
+else
+    echo "Failed to download current weather"
+    exit 1
+fi
+
+# Download forecast
+if wget -q "https://api.openweathermap.org/data/2.5/forecast?lat=${LAT}&lon=${LONG}&units=metric&appid=${APPID}" -O "${FORECAST}"; then
+    echo "Forecast downloaded"
+else
+    echo "Failed to download forecast"
+    exit 1
+fi
+  

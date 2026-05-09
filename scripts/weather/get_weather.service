@@ -1,0 +1,21 @@
+[Unit]
+Description=Get the current weather
+
+[Service]
+Type=oneshot
+ExecStart=/usr/local/bin/get_weather
+   _______________________________________________________________
+
+sudo nano /etc/systemd/system/get_weather.timer
+
+[Unit]
+Description=Get the current weather every 05 minutes
+
+[Timer]
+OnCalendar=*:00/05:00
+Persistent=true
+Unit=get_weather.service
+
+[Install]
+WantedBy=multi-user.target
+

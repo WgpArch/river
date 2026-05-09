@@ -48,3 +48,16 @@ Get a free API key: https://openweathermap.org/api
 - **Font**: Z003 (with JetBrainsMono Nerd Font fallback for icons)
 
 *This repo is personal, but open. Use what helps you, ignore what doesn't.*
+
+## 🌤️ Weather Widget Setup (River / Hyprland / Sway)
+
+This repo includes scripts for a Waybar weather widget using OpenWeatherMap. Works identically across River, Hyprland, and Sway.
+
+### ⚠️ Important: Personal Config Not Included
+The file `/etc/get_weather` contains my personal API key and location. It is **excluded from this repo** via `.gitignore`.
+
+### One-Time Setup (After Clone/Reinstall)
+
+1. **Install dependencies**:
+   ```bash
+   sudo pacman -S ruby noto-fonts-emoji wget jq
