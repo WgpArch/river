@@ -1,3 +1,19 @@
+<div align="center">
+
+  <img src="https://img.shields.io/badge/Arch_Linux-1793D1?style=for-the-badge&logo=arch-linux&logoColor=white" alt="Arch Linux">
+  <img src="https://img.shields.io/badge/Wayland-00B4F0?style=for-the-badge&logo=wayland&logoColor=white" alt="Wayland">
+  <img src="https://img.shields.io/badge/River-000000?style=for-the-badge&logo=terminal&logoColor=white" alt="River">
+  <img src="https://img.shields.io/badge/License-MIT-green.svg?style=for-the-badge" alt="License">
+
+  <br><br>
+
+  Dynamic Tiling Wayland Compositor on Arch Linux.
+
+</div>
+
+---
+
+
 # River Wayland Compositor Config
 
 > Personal River setup for Arch Linux. Primarily for my own version control and backup, but freely available to browse, fork, or adapt.
