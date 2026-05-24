@@ -42,7 +42,7 @@ Get a free API key: https://openweathermap.org/api
 
 - **OS**: Arch Linux (rolling)
 - **Compositor**: River (dynamic Wayland)
-- **Bar**: Waybar (River-specific theme in `.config/waybar/river/`)
+- **Bar**: Waybar (River-specific theme in `configs/waybar/river/`)
 - **Launcher**: Rofi (cyber-neon theme)
 - **Tiling**: filtile-git (autotiling with 50/50 split)
 - **Font**: Z003 (with JetBrainsMono Nerd Font fallback for icons)
