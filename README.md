@@ -79,3 +79,9 @@ The file `/etc/get_weather` contains my personal API key and location. It is **e
    sudo pacman -S ruby noto-fonts-emoji wget jq
 
 ## 📸 Screenshots
+
+![Screenshot 1](screenshot-20260524-195531.png)
+![Screenshot 2](screenshot-20260524-195747.png)
+![Screenshot 3](screenshot-20260524-195841.png)
+![Screenshot 4](screenshot-20260524-195853.png)
+![Screenshot 5](screenshot-20260524-195903.png)
