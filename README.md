@@ -1,83 +1,25 @@
+# River Dotfiles
+
 <div align="center">
 
-  <img src="https://img.shields.io/badge/Arch_Linux-1793D1?style=for-the-badge&logo=arch-linux&logoColor=white" alt="Arch Linux">
-  <img src="https://img.shields.io/badge/Wayland-00B4F0?style=for-the-badge&logo=wayland&logoColor=white" alt="Wayland">
-  <img src="https://img.shields.io/badge/River-000000?style=for-the-badge&logo=terminal&logoColor=white" alt="River">
-  <img src="https://img.shields.io/badge/License-MIT-green.svg?style=for-the-badge" alt="License">
+[![View Documentation](https://img.shields.io/badge/View-Documentation-blue?style=for-the-badge)](https://wgparch.github.io/river/)
 
-  <br><br>
+<img src="https://img.shields.io/badge/Arch_Linux-1793D1?style=for-the-badge&logo=arch-linux&logoColor=white" alt="Arch Linux">
+<img src="https://img.shields.io/badge/Wayland-00B4F0?style=for-the-badge&logo=wayland&logoColor=white" alt="Wayland">
+<img src="https://img.shields.io/badge/River-000000?style=for-the-badge&logo=terminal&logoColor=white" alt="River">
+<img src="https://img.shields.io/badge/License-MIT-green.svg?style=for-the-badge" alt="License">
 
-  Dynamic Tiling Wayland Compositor on Arch Linux.
+<br><br>
+
+Dynamic Tiling Wayland Compositor on Arch Linux.
 
 </div>
 
 ---
 
+## 📖 Documentation & Installation
 
-# River Wayland Compositor Config
-
-> Personal River setup for Arch Linux. Primarily for my own version control and backup, but freely available to browse, fork, or adapt.
-
----
-
-## ⚠️ Important: Read Before Using
-
-This is **not** a typical, beginner-friendly Arch + Wayland setup.  
-My configuration reflects years of experimentation, specific hardware, and intentional trade-offs. I prioritize flexibility and aesthetic consistency over minimalism.
-
-**Using files from this repository will modify your `~/.config` directory.**  
-🔹 **Always back up your existing config first**: `cp -a ~/.config ~/.config.backup.$(date +%F)`  
-🔹 **No guarantees of stability or compatibility on other systems.**
-
-If you're comfortable with that, feel free to take what works for you.
-
----
-
-## 📦 How to Use (With GNU Stow)
-
-1. **Install Stow**: `sudo pacman -S stow`
-2. **Clone this repo**: `git clone <repo-url> ~/.dotfiles`
-3. **Deploy River config**: `cd ~/.dotfiles && stow river`
-4. **Reload River**: `Super+R` (or restart session)
-
-🔁 **Updating**: `cd ~/.dotfiles && git pull && stow river`
-
----
-
-## 🌤️ Weather Widget Note
-
-This setup includes a weather script that uses OpenWeatherMap.  
-⚠️ `/etc/get_weather` contains my personal API key and location. **Replace with your own values before using.**
-
-Find your coordinates: https://www.latlong.net/  
-Get a free API key: https://openweathermap.org/api
-
----
-
-## 📋 My Setup
-
-- **OS**: Arch Linux (rolling)
-- **Compositor**: River (dynamic Wayland)
-- **Bar**: Waybar (River-specific theme in `configs/waybar/river/`)
-- **Launcher**: Rofi (cyber-neon theme)
-- **Tiling**: filtile-git (autotiling with 50/50 split)
-- **Font**: Z003 (with JetBrainsMono Nerd Font fallback for icons)
-
-*This repo is personal, but open. Use what helps you, ignore what doesn't.*
-
-## 🌤️ Weather Widget Setup (River / Hyprland / Sway)
-
-This repo includes scripts for a Waybar weather widget using OpenWeatherMap. Works identically across River, Hyprland, and Sway.
-
-### ⚠️ Important: Personal Config Not Included
-The file `/etc/get_weather` contains my personal API key and location. It is **excluded from this repo** via `.gitignore`.
-
-### One-Time Setup (After Clone/Reinstall)
-
-1. **Install dependencies**:
-   ```bash
-   sudo pacman -S ruby noto-fonts-emoji wget jq
-```
+For full installation instructions, keybinds, waybar configuration, and theming details, please visit the **[Official Documentation Website](https://wgparch.github.io/river/)**.
 
 ## 📸 Screenshots
 
