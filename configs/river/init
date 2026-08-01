@@ -9,6 +9,7 @@
 riverctl spawn "dbus-update-activation-environment --systemd DBUS_SESSION_BUS_ADDRESS SEATD_SOCK DISPLAY WAYLAND_DISPLAY XAUTHORITY XDG_CURRENT_DESKTOP=river"
 riverctl spawn "systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP DISPLAY"
 
+
 # -----------------------------------------------------------------------------
 # 2. Appearance: Colors, Borders, Background
 # -----------------------------------------------------------------------------
@@ -42,13 +43,17 @@ riverctl hide-cursor when-typing enabled
 # -----------------------------------------------------------------------------
 # 4. Layout Generator: filtile
 # -----------------------------------------------------------------------------
-riverctl default-layout filtile
-riverctl spawn  filtile
+# -----------------------------------------------------------------------------
+# 4. Layout Generator: stacktile
+# -----------------------------------------------------------------------------
+riverctl default-layout stacktile
+riverctl spawn stacktile
 
 # Optional: Set initial layout parameters
-riverctl send-layout-cmd filtile "main-ratio 0.5"
-riverctl send-layout-cmd filtile "outer-gaps 5"
-riverctl send-layout-cmd filtile "inner-gaps 4"
+# Note: stacktile uses underscores for these specific commands
+riverctl send-layout-cmd stacktile "main_ratio 0.5"
+riverctl send-layout-cmd stacktile "outer_gaps 5"
+riverctl send-layout-cmd stacktile "inner_gaps 4"
 
 # -----------------------------------------------------------------------------
 # 5. Spawn Services (Waybar, Notifications, Network, etc.)
@@ -79,10 +84,10 @@ riverctl spawn "wl-paste --type images --watch cliphist store"
 # -----------------------------------------------------------------------------
 # 6. GTK Theme & Settings (for apps that respect GTK)
 # -----------------------------------------------------------------------------
-gnome_schema="org.gnome.desktop.interface"
-gsettings set "$gnome_schema" gtk-theme "Flat-Remix-GTK-Blue-Darkest-Solid" 2>/dev/null || true
-gsettings set "$gnome_schema" icon-theme "Tela-circle-manjaro-dark" 2>/dev/null || true
-gsettings set "$gnome_schema" cursor-theme "Layan-cursors" 2>/dev/null || true
+gsettings set org.gnome.desktop.interface icon-theme "Flat-Remix-GTK-Magenta-Darkest-Solid"
+gsettings set org.gnome.desktop.interface cursor-theme "Adwaita"
+gsettings set org.gnome.desktop.interface gtk-theme "Flat-Remix-GTK-Magenta-Darkest-Solid"
+gsettings set org.gnome.desktop.interface font-name "Z003 Bold Italic 11"
 
 # -----------------------------------------------------------------------------
 # 7. Window Rules: Float & CSD Filters
@@ -114,7 +119,7 @@ riverctl map normal Super Space toggle-float         # Toggle float
 riverctl map normal Super F toggle-fullscreen        # Toggle fullscreen
 
 # --- Launcher & Power ---
-riverctl map normal Super D spawn 'rofi -show drun -theme ~/.config/rofi/sleek-dark.rasi'
+riverctl map normal Super D spawn "rofi -show drun -theme ~/.config/river/scripts/cyber-neon.rasi"
 riverctl map normal Super E spawn "$HOME/.config/river/scripts/rofi_powermenu"
 
 # --- Screenshots & Utilities ---
@@ -160,17 +165,17 @@ riverctl map normal Super+Shift P set-view-tags ${scratch_tag}
 all_but_scratch_tag=$(( ((1 << 32) - 1) ^ $scratch_tag ))
 riverctl spawn-tagmask ${all_but_scratch_tag}
 
-# --- Layout Controls (rivercarro) ---
-riverctl map normal Super H send-layout-cmd rivercarro "main-ratio -0.05"
-riverctl map normal Super L send-layout-cmd rivercarro "main-ratio +0.05"
-riverctl map normal Super+Shift H send-layout-cmd rivercarro "main-count +1"
-riverctl map normal Super+Shift L send-layout-cmd rivercarro "main-count -1"
-riverctl map normal Super Up    send-layout-cmd rivercarro "main-location top"
-riverctl map normal Super Right send-layout-cmd rivercarro "main-location right"
-riverctl map normal Super Down  send-layout-cmd rivercarro "main-location bottom"
-riverctl map normal Super Left  send-layout-cmd rivercarro "main-location left"
-riverctl map normal Super M     send-layout-cmd rivercarro "main-location monocle"
-riverctl map normal Super+Shift A send-layout-cmd rivercarro "main-ratio 0.5"
+# --- Layout Controls (stacktile) ---
+riverctl map normal Super H send-layout-cmd stacktile "main-ratio -0.05"
+riverctl map normal Super L send-layout-cmd stacktile "main-ratio +0.05"
+riverctl map normal Super+Shift H send-layout-cmd stacktile "main-count +1"
+riverctl map normal Super+Shift L send-layout-cmd stacktile "main-count -1"
+riverctl map normal Super Up    send-layout-cmd stacktile "main-location top"
+riverctl map normal Super Right send-layout-cmd stacktile "main-location right"
+riverctl map normal Super Down  send-layout-cmd stacktile "main-location bottom"
+riverctl map normal Super Left  send-layout-cmd stacktile "main-location left"
+riverctl map normal Super M     send-layout-cmd stacktile "main-location monocle"
+riverctl map normal Super+Shift A send-layout-cmd stacktile "main-ratio 0.5"
 
 # --- Passthrough Mode (for nested compositors) ---
 riverctl declare-mode passthrough
