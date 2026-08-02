@@ -2,32 +2,36 @@
 
       "layer": "top", 
       "position": "top", 
-      "height": 20,
+      "height": 10,
       "margin": "0 0 0 0",
       "modules-left": [
       "custom/launcher",
       "river/tags",
       "tray"
-    ],
-      "modules-center": ["clock", "custom/weather"],
+      ],
+      "modules-center": ["custom/updates", "clock", "custom/weather"],
       "modules-right": [
       "custom/player",
-      "pulseaudio",
+      "memory",
+      "disk",
       "temperature",
       "battery",
-      "memory",
+      "pulseaudio",
+      "custom/notification",
       "custom/power"
-    ],
+      ],
 
   
 
     "river/tags": {
-        "num-tags": 11,
-        "tag-labels": ["1", "2", "3", "4", "5", "6" , "7" , "8" , "9" , "10", "11",]
+        "num-tags": 12,
+        "tag-labels": ["1", "2", "3", "4", "5", "6" , "7" , "8" , "9" , "10", "11", "12"]
    },
      
    "custom/weather": {
-        "exec": "while true; do ~/.local/bin/parse_weather.rb; sleep 10; done",
+      //"exec": "while true; do ~/.local/bin/parse_weather.rb; sleep 10; done",
+        "exec": "~/.config/waybar/scripts/weather.py",
+        "interval": 300,
         "return-type": "json",
         "tooltip": true
    },
@@ -35,6 +39,13 @@
    "tray": {
        "icon-size": 15,
        "spacing": 2
+   },
+
+   "custom/updates": {
+       "exec": "~/.config/waybar/river/scripts/check_updates.sh",
+       "interval": 1800,
+       "return-type": "json",
+       "tooltip": true
    },
 
    "clock": {

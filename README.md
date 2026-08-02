@@ -28,3 +28,4 @@ For full installation instructions, keybinds, waybar configuration, and theming 
 ![Screenshot 3](screenshot-20260524-195841.png)
 ![Screenshot 4](screenshot-20260524-195853.png)
 ![Screenshot 5](screenshot-20260524-195903.png)
+![Screenshot 6](screenshot-20260802-212311.png)
