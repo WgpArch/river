@@ -530,6 +530,56 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="📜 Key Scripts">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#waybar-scripts_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Waybar Scripts
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#river-scripts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        River Scripts
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configuration-files" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ⚙️ Configuration Files
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#update-checker-details" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🔄 Update Checker Details
+      
+    </span>
+  </a>
+  
 </li>
       
     </ul>
@@ -679,6 +729,56 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="📜 Key Scripts">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#waybar-scripts_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Waybar Scripts
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#river-scripts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        River Scripts
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configuration-files" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ⚙️ Configuration Files
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#update-checker-details" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🔄 Update Checker Details
+      
+    </span>
+  </a>
+  
 </li>
       
     </ul>
@@ -704,12 +804,13 @@
 <h3 id="left">Left</h3>
 <ul>
 <li><strong>Custom Launcher:</strong> Arch Linux icon. Opens Rofi (cyber-neon theme).</li>
-<li><strong>River Tags:</strong> Displays 11 persistent workspace tags.</li>
+<li><strong>River Tags:</strong> Displays 12 persistent workspace tags.</li>
 <li><strong>System Tray:</strong> Standard app tray.</li>
 </ul>
 <h3 id="center">Center</h3>
 <ul>
 <li><strong>Clock:</strong> Detailed date/time with calendar tooltip.</li>
+<li><strong>Custom Updates:</strong> System update checker (Pacman + Trizen). Shows refresh icon when updates available.</li>
 <li><strong>Custom Weather:</strong> Fetches weather via a custom Ruby script (<code>parse_weather.rb</code>).</li>
 </ul>
 <h3 id="right">Right</h3>
@@ -719,9 +820,31 @@
 <li><strong>Temperature:</strong> CPU/GPU temp with critical warnings.</li>
 <li><strong>Battery:</strong> Battery percentage and status icons.</li>
 <li><strong>Memory:</strong> RAM usage.</li>
+<li><strong>Disk:</strong> Disk usage percentage.</li>
 <li><strong>Custom Power:</strong> Power button. Opens Rofi power menu.</li>
 </ul>
 <h2 id="key-scripts">📜 Key Scripts</h2>
+<h3 id="waybar-scripts_1">Waybar Scripts</h3>
+<p>Located in <code>~/.config/waybar/river/scripts/</code>:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Script</th>
+<th style="text-align: left;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><code>check_updates.sh</code></td>
+<td style="text-align: left;">Monitors Pacman and Trizen for system updates. Displays icon and detailed tooltip.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>player.sh</code></td>
+<td style="text-align: left;">Media player status and control.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="river-scripts">River Scripts</h3>
 <p>Located in <code>~/.config/river/scripts/</code>:</p>
 <table>
 <thead>
@@ -749,6 +872,19 @@
 </tr>
 </tbody>
 </table>
+<h2 id="configuration-files">⚙️ Configuration Files</h2>
+<ul>
+<li><strong>Config</strong>: <code>~/.config/waybar/river/config</code></li>
+<li><strong>Style</strong>: <code>~/.config/waybar/river/style.css</code></li>
+<li><strong>Colors</strong>: <code>~/.config/waybar/river/color.css</code></li>
+</ul>
+<h2 id="update-checker-details">🔄 Update Checker Details</h2>
+<p>The update checker module (<code>check_updates.sh</code>) runs every 30 minutes and:
+- Checks for Pacman updates via <code>pacman -Qu</code>
+- Checks for Trizen (AUR) updates via <code>trizen -Qu</code>
+- Displays a refresh icon () when updates are available
+- Displays a checkmark () when system is up to date
+- Shows detailed list of available updates in tooltip on hover</p>
 
 
 
