@@ -11,3 +11,5 @@ Here are various screenshots of the River setup in action.
 ![Latest Waybar Update Checker](screenshots/screenshot-20260802-212311.png)
 
 ![Waybar Update Checker Working](screenshots/screenshot-20260803-072442.png)
+
+![Waybar Update Checker Working](screenshots/screenshot-20260803-072442.png)
