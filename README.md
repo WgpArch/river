@@ -23,7 +23,7 @@ For full installation instructions, keybinds, waybar configuration, and theming 
 
 ## 📸 Screenshots
 
-![Screenshot 1](screenshot-20260524-195531.png)
+![Main Screenshot - Update Checker Tooltip](screenshot-20260803-072442.png)
 ![Screenshot 2](screenshot-20260524-195747.png)
 ![Screenshot 3](screenshot-20260524-195841.png)
 ![Screenshot 4](screenshot-20260524-195853.png)
